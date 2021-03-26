@@ -1,6 +1,5 @@
 class Greeting
     attr_reader :name, :other
-    
     def initialize
         @name = []
         @other = "toto"
