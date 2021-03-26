@@ -1,0 +1,1 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/f85208b910e690c5dd49/maintainability)](https://codeclimate.com/github/yohann-kevin/Fruits-Shop-rb/maintainability)
