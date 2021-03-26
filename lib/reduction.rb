@@ -21,7 +21,7 @@ class Reduction
         when "apfel"
             return computeDiscount(countBasket[3],2,(fruits[:apfel] * 100) - ((fruits[:apfel] * 100) / 2))
         else
-            return reduction = 0
+            reduction = 0
         end
     end
 
