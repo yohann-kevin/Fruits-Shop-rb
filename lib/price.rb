@@ -39,7 +39,7 @@ class Price
     return false
   end
     
-  def computeCents(fruits,entry)
+  def computeCents(fruits, entry)
     result = fruits * 100
     result -= @reduction.checkEntry(entry,@fruits)
     puts "#{result} centime"
