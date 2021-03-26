@@ -1,7 +1,7 @@
 class Reduction
   $cherryReduction = 0.20
 
-  def countBasket
+  def count_basket
     basketCount = [
       $basket.count("cherry"),
       $basket.count("banana"),
@@ -10,23 +10,22 @@ class Reduction
     ]
   end
 
-  def checkEntry(entry, fruits)
+  def check_entry(entry, fruits)
     case entry.to_s
     when "cherry"
-      reduction = computeDiscount(countBasket[0], 2, ($cherryReduction * 100))
+      reduction = compute_discount(count_basket[0], 2, ($cherryReduction * 100))
     when "banana"
-      reduction = computeDiscount(countBasket[1], 2, (fruits[:banana] * 100))
+      reduction = compute_discount(count_basket[1], 2, (fruits[:banana] * 100))
     when "apple"
-      reduction = computeDiscount(countBasket[2], 3, (fruits[:apple] * 100))
+      reduction = compute_discount(count_basket[2], 3, (fruits[:apple] * 100))
     when "apfel"
-      reduction = computeDiscount(countBasket[3], 2, (fruits[:apfel] * 100) - ((fruits[:apfel] * 100) / 2))
+      reduction = compute_discount(count_basket[3], 2, (fruits[:apfel] * 100) - ((fruits[:apfel] * 100) / 2))
     else
       reduction = 0
     end
-    return reduction
   end
 
-  def computeDiscount(counter, modulo, reduction)
+  def compute_discount(counter, modulo, reduction)
     return reduction if counter % modulo == 0 && counter != 0
     return 0
   end

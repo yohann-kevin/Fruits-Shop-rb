@@ -41,7 +41,7 @@ class Price
     
   def computeCents(fruits, entry)
     result = fruits * 100
-    result -= @reduction.checkEntry(entry,@fruits)
+    result -= @reduction.check_entry(entry,@fruits)
     puts "#{result} centime"
     $sum += result
     puts "vous devez payer #{$sum} centime"
