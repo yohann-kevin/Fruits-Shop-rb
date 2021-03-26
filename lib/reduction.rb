@@ -15,11 +15,11 @@ class Reduction
     when "cherry"
       compute_discount(count_basket[0], 2, ($cherryReduction * 100))
     when "banana"
-      compute_discount(count_basket[1], 2, (fruits[:banana] * 100))
+      compute_discount(count_basket[1], 2, (fruits["banana"] * 100))
     when "apple"
-      compute_discount(count_basket[2], 3, (fruits[:apple] * 100))
+      compute_discount(count_basket[2], 3, (fruits["apple"] * 100))
     when "apfel"
-      compute_discount(count_basket[3], 2, (fruits[:apfel] * 100) - ((fruits[:apfel] * 100) / 2))
+      compute_discount(count_basket[3], 2, (fruits["apfel"] * 100) - ((fruits["apfel"] * 100) / 2))
     else
       0
     end

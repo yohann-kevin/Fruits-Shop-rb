@@ -4,11 +4,11 @@ class Price
 
   def initialize(reduction)
     @fruits = {
-      "apple": 1, 
-      "apfel": 1, 
-      "pommes": 1,
-      "banana": 1.50, 
-      "cherry": 0.75
+      "apple"=> 1, 
+      "apfel"=> 1, 
+      "pommes"=> 1,
+      "banana"=> 1.50, 
+      "cherry"=> 0.75
     }
     @reduction = reduction
   end
@@ -16,8 +16,7 @@ class Price
   def getPrice(arg)
     allArticle = arg.split(", ")
     if allArticle.length == 1
-      entry = arg.to_sym
-      value = ":#{entry}"
+      entry = arg.to_s
       computeCents(@fruits[entry],entry) if testValue(entry)
     else
       allArticle.each do |el|
