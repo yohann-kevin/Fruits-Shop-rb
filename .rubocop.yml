@@ -9,3 +9,7 @@ Documentation:
 
 Metrics/LineLength:
   Max: 100
+
+GlobalVars:
+  AllowedVariables:
+    - $redis

@@ -13,16 +13,17 @@ class Reduction
   def checkEntry(entry, fruits)
     case entry.to_s
     when "cherry"
-      return computeDiscount(countBasket[0], 2, ($cherryReduction * 100))
+      reduction = computeDiscount(countBasket[0], 2, ($cherryReduction * 100))
     when "banana"
-      return computeDiscount(countBasket[1], 2, (fruits[:banana] * 100))
+      reduction = computeDiscount(countBasket[1], 2, (fruits[:banana] * 100))
     when "apple"
-      return computeDiscount(countBasket[2], 3, (fruits[:apple] * 100))
+      reduction = computeDiscount(countBasket[2], 3, (fruits[:apple] * 100))
     when "apfel"
-      return computeDiscount(countBasket[3], 2, (fruits[:apfel] * 100) - ((fruits[:apfel] * 100) / 2))
+      reduction = computeDiscount(countBasket[3], 2, (fruits[:apfel] * 100) - ((fruits[:apfel] * 100) / 2))
     else
       reduction = 0
     end
+    return reduction
   end
 
   def computeDiscount(counter, modulo, reduction)
