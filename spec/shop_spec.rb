@@ -1,6 +1,6 @@
-require 'spec_helper'
-require 'price'
-require 'reduction'
+require "spec_helper"
+require "price"
+require "reduction"
 
 RSpec.describe Price do
   it "return 580" do

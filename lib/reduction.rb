@@ -1,14 +1,14 @@
 class Reduction
-    $cherryReduction = 0.20
+  $cherryReduction = 0.20
 
-    def countBasket
-      basketCount = [
-        $basket.count("cherry"),
-        $basket.count("banana"),
-        $basket.count("apple"),
-        $basket.count("apfel")
-      ]
-    end
+  def countBasket
+    basketCount = [
+      $basket.count("cherry"),
+      $basket.count("banana"),
+      $basket.count("apple"),
+      $basket.count("apfel")
+    ]
+  end
 
   def checkEntry(entry,fruits)
     case entry.to_s
