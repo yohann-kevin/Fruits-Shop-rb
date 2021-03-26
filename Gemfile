@@ -8,5 +8,5 @@ source "https://rubygems.org"
 gem "pry"
 # frameworks de test
 gem "rspec"
-
+# code analyzer
 gem "rubocop"
