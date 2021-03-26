@@ -1,2 +1,5 @@
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+  
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false

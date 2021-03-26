@@ -5,6 +5,8 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # repm
-gem 'pry'
+gem "pry"
 # frameworks de test
-gem 'rspec'
+gem "rspec"
+
+gem "rubocop"
