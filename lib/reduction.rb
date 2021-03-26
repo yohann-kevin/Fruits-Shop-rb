@@ -26,7 +26,7 @@ class Reduction
   end
 
   def compute_discount(counter, modulo, reduction)
-    return reduction if counter % modulo == 0 && counter != 0
-    return 0
+    (counter % modulo).zero? && counter != 0 ? reduction : 0
   end
+
 end
