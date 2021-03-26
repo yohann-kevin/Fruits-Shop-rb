@@ -1,33 +1,33 @@
 class Price
   $sum = 0
-  $basket = Array.new
+  $basket = []
 
   def initialize(reduction)
     @fruits = {
-      "apple"=> 1, 
-      "apfel"=> 1, 
-      "pommes"=> 1,
-      "banana"=> 1.50, 
-      "cherry"=> 0.75
+      "apple" => 1,
+      "apfel" => 1,
+      "pommes" => 1,
+      "banana" => 1.50,
+      "cherry" => 0.75
     }
     @reduction = reduction
   end
 
-  def getPrice(arg)
-    allArticle = arg.split(", ")
-    if allArticle.length == 1
+  def get_price(arg)
+    all_article = arg.split(", ")
+    if all_article.length == 1
       entry = arg.to_s
-      computeCents(@fruits[entry],entry) if testValue(entry)
+      compute_cents(@fruits[entry], entry) if test_value(entry)
     else
-      allArticle.each do |el|
-        getPrice(el)
+      all_article.each do |el|
+        get_price(el)
       end
     end
-    return $sum.to_i
+    $sum.to_i
   end
-    
-  def testValue(entry)
-    @fruits.each do | key, value |
+
+  def test_value(entry)
+    @fruits.each do |key, _value|
       if entry == key
         $basket << entry.to_s
         return true
@@ -35,12 +35,12 @@ class Price
         puts key
       end
     end
-    return false
+    false
   end
-    
-  def computeCents(fruits, entry)
+
+  def compute_cents(fruits, entry)
     result = fruits * 100
-    result -= @reduction.check_entry(entry,@fruits)
+    result -= @reduction.check_entry(entry, @fruits)
     puts "#{result} centime"
     $sum += result
     puts "vous devez payer #{$sum} centime"

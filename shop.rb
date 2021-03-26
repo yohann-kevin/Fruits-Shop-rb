@@ -7,7 +7,7 @@ def init
     break if arg.chomp == "quit"
     reduction = Reduction.new
     price = Price.new(reduction)
-    price.getPrice(arg.chomp)
+    price.get_price(arg.chomp)
   end
 end
 
