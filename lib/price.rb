@@ -27,7 +27,7 @@ class Price
   end
 
   def test_value(entry)
-    @fruits.each do |key, _value|
+    @fruits.each_key do |key, _value|
       if entry == key
         $basket << entry.to_s
         return true
