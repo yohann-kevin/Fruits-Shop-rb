@@ -1,5 +1,11 @@
 Style/StringLiterals:
   EnforcedStyle: double_quotes
-  
+
 Lint/ShadowingOuterLocalVariable:
   Enabled: false
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
