@@ -2,12 +2,7 @@ class Reduction
   $cherryReduction = 0.20
 
   def count_basket
-      return [
-        $basket.count("cherry"),
-        $basket.count("banana"),
-        $basket.count("apple"),
-        $basket.count("apfel")
-      ]
+    [$basket.count("cherry"), $basket.count("banana"), $basket.count("apple"), $basket.count("apfel")]
   end
 
   def check_entry(entry, fruits)
@@ -28,5 +23,4 @@ class Reduction
   def compute_discount(counter, modulo, reduction)
     (counter % modulo).zero? && counter != 0 ? reduction : 0
   end
-
 end
