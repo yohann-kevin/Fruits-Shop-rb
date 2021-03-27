@@ -11,17 +11,20 @@ class Reduction
   end
 
   def check_entry(entry, fruits)
-    case entry.to_s
-    when "cherry"
+    if entry.to_s == "cherry"
       compute_discount(count_basket[0], 2, ($cherryReduction * 100))
-    when "banana"
+    elsif entry.to_s == "banana"
       compute_discount(count_basket[1], 2, (fruits["banana"] * 100))
-    when "apple"
-      compute_discount(count_basket[2], 3, (fruits["apple"] * 100))
-    when "apfel"
-      compute_discount(count_basket[3], 2, (fruits["apfel"] * 100) - ((fruits["apfel"] * 100) / 2))
     else
-      0
+      detect_language(entry.to_s, fruits)
+    end
+  end
+
+  def detect_language(entry, fruits)
+    if entry == "apple"
+      compute_discount(count_basket[2], 3, (fruits["apple"] * 100))
+    else
+      compute_discount(count_basket[3], 2, (fruits["apfel"] * 100) - ((fruits["apfel"] * 100) / 2))
     end
   end
 
