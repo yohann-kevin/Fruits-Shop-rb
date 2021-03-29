@@ -1,4 +1,4 @@
-require "pry"
+#require "pry"
 require "./lib/reduction.rb"
 require "./lib/price.rb"
 
