@@ -8,17 +8,15 @@ GEM
     diff-lcs (1.4.4)
     erb (2.2.3)
       cgi
+    eventmachine (1.2.7)
     eventmachine (1.2.7-x64-mingw32)
     method_source (1.0.0)
-    nio4r (2.5.7)
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
     pry (0.14.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    puma (5.2.2)
-      nio4r (~> 2.0)
     rack (2.2.3)
     rainbow (3.0.0)
     regexp_parser (2.1.1)
@@ -56,12 +54,12 @@ GEM
     unicode-display_width (2.0.0)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
   erb
   pry
-  puma
   rack
   rspec
   rubocop
