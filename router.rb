@@ -2,11 +2,15 @@ require "tilt"
 require "erb"
 require "./lib/reduction"
 require "./lib/price"
-#require "event"
+require "./lib/controller"
 
 class Router
   $basket_ui = ""
   $result = ""
+
+  def controller
+    @controller ||= Controller.new
+  end
 
   def call(env)
     path = env["REQUEST_PATH"]
@@ -16,24 +20,11 @@ class Router
 
     case path
       when "/"
-        template = Tilt.new('index.html.erb')
-        [200, {"Content-Type" => "text/html"}, template.render(
-          self,
-          plop: "plop",
-          product: $basket_ui,
-          result: $result,
-          reduction: reduc,
-          price: Price.instance(reduc)
-        )]
+        controller.index(params)
       when "/add"
-        reduction = Reduction.instance
-        price = Price.instance(reduction)
-        $basket_ui += " #{params.values[0] }"
-        $result  = price.get_price(params.values[0])
-        [302, {'Location' => "/"}, []]
+        controller.add(params)
       else
-        template = Tilt.new('not_found.html.erb')
-        [404, {"Content-Type"=>"text/html"}, template.render]
+        controller.not_found
       end
   end
 
