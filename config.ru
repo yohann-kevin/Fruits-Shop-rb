@@ -1,7 +1,7 @@
-require 'rack'
-require 'thin'
+require "rack"
+require "thin"
 # (re)load
-load 'router.rb'
+load "router.rb"
 
 handler = Rack::Handler::Thin
 handler.run(

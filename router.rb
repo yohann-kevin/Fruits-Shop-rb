@@ -1,7 +1,3 @@
-require "tilt"
-require "erb"
-require "./lib/reduction"
-require "./lib/price"
 require "./lib/controller"
 
 class Router
