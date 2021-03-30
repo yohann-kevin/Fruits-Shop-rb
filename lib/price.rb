@@ -62,7 +62,8 @@ class Price
   end
 
   def compute_cents(fruits, entry)
-    result = fruits * 100
+    #result = fruits * 100
+    result = fruits
     result -= @reduction.check_entry(entry, @fruits)
     #puts "#{result} centime"
     $sum += result

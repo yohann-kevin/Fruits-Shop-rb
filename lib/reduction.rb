@@ -7,19 +7,19 @@ class Reduction
 
   def countbasket
     [
-      $basket.count("cherry"),
-      $basket.count("banana"),
-      $basket.count("apple"),
-      $basket.count("apfel")
+      $basket.count("Cerises"),
+      $basket.count("Bananes"),
+      $basket.count("Apples"),
+      $basket.count("Mele")
     ]
   end
 
   def check_entry(entry, fruits)
-    if entry.to_s == "cherry"
+    if entry.to_s == "Cerises"
       reduction = ($cherryReduction * 100)
       compute_discount(countbasket[0], 2, reduction)
-    elsif entry.to_s == "banana"
-      reduction = (fruits["banana"] * 100)
+    elsif entry.to_s == "Bananes"
+      reduction = (fruits["Bananes"] * 100)
       compute_discount(countbasket[1], 2, reduction)
     else
       detect_language(entry.to_s, fruits)
@@ -27,11 +27,12 @@ class Reduction
   end
 
   def detect_language(entry, fruits)
-    if entry == "apple"
-      reduction = (fruits["apple"] * 100)
+    if entry == "Apples"
+      #reduction = (fruits["Apple"] * 100)
+      reduction = fruits["Apples"]
       compute_discount(countbasket[2], 3, reduction)
     else
-      reduction = (fruits["apfel"] * 100) - ((fruits["apfel"] * 100) / 2)
+      reduction = (fruits["Mele"] * 100) - ((fruits["Mele"] * 100) / 2)
       compute_discount(countbasket[3], 2, reduction)
     end
   end
