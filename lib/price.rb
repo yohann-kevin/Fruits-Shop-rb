@@ -1,5 +1,5 @@
 require "./db/database"
-
+# "fraises"=>120, "kiwi"=>210, "poires"=>110,
 class Price
   $sum = 0
   $basket = []
@@ -27,7 +27,6 @@ class Price
 
   def get_price(arg)
     puts @fruits
-    puts arg
     all_article = arg.split(", ")
     if all_article.length == 1
       entry = arg.to_s.downcase
@@ -48,10 +47,9 @@ class Price
       if entry == key
         $basket << entry.to_s
         return true
-      else
-        return false
       end
     end
+    return false
   end
 
   def compute_cents(fruits, entry)

@@ -11,12 +11,10 @@ class Router
   def call(env)
     path = env["REQUEST_PATH"]
     params = Rack::Request.new(env).params
-    product = params.values[0]
-    reduc = Reduction.instance
 
     case path
       when "/"
-        controller.index(params)
+        controller.index()
       when "/add"
         controller.add(params)
       else

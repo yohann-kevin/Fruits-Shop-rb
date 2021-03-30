@@ -8,9 +8,7 @@ class Controller
   $basket_ui = ""
   $result = ""
 
-  def index(params)
-    #product = params.values[0]
-    #reduc = Reduction.instance
+  def index()
     template = Tilt.new('./views/index.html.erb')
     [200, {"Content-Type" => "text/html"}, template.render(
       self,
