@@ -30,11 +30,7 @@ class Price
     all_article = arg.split(", ")
     if all_article.length == 1
       entry = arg.to_s.downcase
-      if test_value(entry)
-        compute_cents(@fruits[entry], entry)
-      else
-        manage_error()
-      end
+      test_value(entry) ? compute_cents(@fruits[entry], entry) : manage_error()
     else
       all_article.each do |el|
         get_price(el)
