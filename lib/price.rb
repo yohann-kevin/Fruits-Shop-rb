@@ -1,5 +1,5 @@
 require "./db/database"
-# "fraises"=>120, "kiwi"=>210, "poires"=>110,
+
 class Price
   $sum = 0
   $basket = []
@@ -30,7 +30,7 @@ class Price
     all_article = arg.split(", ")
     if all_article.length == 1
       entry = arg.to_s.downcase
-      test_value(entry) ? compute_cents(@fruits[entry], entry) : manage_error
+      compute_cents(@fruits[entry], entry) if test_value(entry)
     else
       all_article.each do |el|
         get_price(el)
@@ -45,6 +45,7 @@ class Price
         return true
       end
     end
+    manage_error
     false
   end
 
