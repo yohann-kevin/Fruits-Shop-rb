@@ -6,6 +6,8 @@ source "https://rubygems.org"
 
 # repm
 gem "pry"
+#slite3
+gem "sqlite3"
 # frameworks de test
 gem "rspec"
 # code analyzer

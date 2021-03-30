@@ -13,12 +13,10 @@ class Router
     params = Rack::Request.new(env).params
     product = params.values[0]
     reduc = Reduction.instance
-    #product = params.POST()["product"]
 
     case path
       when "/"
         template = Tilt.new('index.html.erb')
-        puts "/ : #{params.values[0]}"
         [200, {"Content-Type" => "text/html"}, template.render(
           self,
           plop: "plop",

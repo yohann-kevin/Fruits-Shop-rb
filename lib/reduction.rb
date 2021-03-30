@@ -2,7 +2,7 @@ class Reduction
   $cherryReduction = 0.20
 
   def self.instance
-    @reduction ||= Reduction.new  
+    @reduction ||= Reduction.new
   end
 
   def countbasket
