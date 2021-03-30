@@ -8,9 +8,9 @@ class Controller
   $basket_ui = ""
   $result = ""
 
-  def index()
-    template = Tilt.new('./views/index.html.erb')
-    [200, {"Content-Type" => "text/html"}, template.render(
+  def index
+    template = Tilt.new("./views/index.html.erb")
+    [200, { "Content-Type" => "text/html" }, template.render(
       self,
       product: $basket_ui,
       result: $result
@@ -20,13 +20,13 @@ class Controller
   def add(params)
     reduction = Reduction.instance
     price = Price.instance(reduction)
-    $basket_ui += " #{params.values[0] }"
-    $result  = price.get_price(params.values[0])
-    [302, {'Location' => "/"}, []]
+    $basket_ui += " #{params.values[0]}"
+    $result = price.get_price(params.values[0])
+    [302, { "Location" => "/" }, []]
   end
 
   def not_found
-    template = Tilt.new('./views/not_found.html.erb')
-    [404, {"Content-Type"=>"text/html"}, template.render]
+    template = Tilt.new("./views/not_found.html.erb")
+    [404, { "Content-Type"=>"text/html" }, template.render]
   end
 end

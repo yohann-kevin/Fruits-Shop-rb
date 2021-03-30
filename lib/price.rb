@@ -3,20 +3,20 @@ require "./db/database"
 class Price
   $sum = 0
   $basket = []
-  $db = Database.new()
+  $db = Database.new
 
   def self.instance(arg)
     @price ||= Price.new(arg)
   end
 
   def initialize(reduction)
-    @fruits = get_data()
+    @fruits = find_data
     @reduction = reduction
   end
 
-  def get_data
+  def find_data
     result = {}
-    data = $db.get_products()
+    data = $db.find_products
     i = 0
     while i < data.length
       result [data[i][1].to_s.downcase] = data[i][2]
@@ -30,7 +30,7 @@ class Price
     all_article = arg.split(", ")
     if all_article.length == 1
       entry = arg.to_s.downcase
-      test_value(entry) ? compute_cents(@fruits[entry], entry) : manage_error()
+      test_value(entry) ? compute_cents(@fruits[entry], entry) : manage_error
     else
       all_article.each do |el|
         get_price(el)

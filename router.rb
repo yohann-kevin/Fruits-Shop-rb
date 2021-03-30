@@ -11,15 +11,15 @@ class Router
   def call(env)
     path = env["REQUEST_PATH"]
     params = Rack::Request.new(env).params
-
+    
     case path
       when "/"
-        controller.index()
+        controller.index
       when "/add"
         controller.add(params)
       else
         controller.not_found
-      end
+    end
   end
 
 end

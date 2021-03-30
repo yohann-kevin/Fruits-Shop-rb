@@ -3,7 +3,7 @@ require "sqlite3"
 class Database
   $db
 
-  def get_products
+  def find_products
     data = connect()
     manage_data(data)
     return data
