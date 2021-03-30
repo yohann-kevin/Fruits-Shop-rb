@@ -22,7 +22,7 @@ class Price
       result [data[i][1].to_s.downcase] = data[i][2]
       i += 1
     end
-    return result
+    result
   end
 
   def get_price(arg)
@@ -45,17 +45,17 @@ class Price
         return true
       end
     end
-    return false
+    false
   end
 
   def compute_cents(fruits, entry)
     result = fruits
     result -= @reduction.check_entry(entry, @fruits)
     $sum += result
-    return "vous devez payer #{$sum} centime"
+    "vous devez payer #{$sum} centime"
   end
 
   def manage_error
-    return "Invalid input"
+    "Invalid input"
   end
 end
