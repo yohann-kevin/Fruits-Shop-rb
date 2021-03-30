@@ -1,4 +1,5 @@
 require "./db/database"
+require "./lib/emoji.rb"
 
 class Price
   $sum = 0
@@ -53,7 +54,8 @@ class Price
     result = fruits
     result -= @reduction.check_entry(entry, @fruits)
     $sum += result
-    "vous devez payer #{$sum} centime"
+    symbol = Emoji.new(entry).check_arg
+    "vous devez payer #{$sum} centime  #{symbol}"
   end
 
   def manage_error
