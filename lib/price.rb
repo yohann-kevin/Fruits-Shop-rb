@@ -2,6 +2,10 @@ class Price
   $sum = 0
   $basket = []
 
+  def self.instance(arg)
+    @price ||= Price.new(arg)
+  end
+
   def initialize(reduction)
     @fruits = {
       "apple" => 1,
@@ -23,7 +27,6 @@ class Price
         get_price(el)
       end
     end
-    $sum.to_i
   end
 
   def test_value(entry)
@@ -44,5 +47,6 @@ class Price
     puts "#{result} centime"
     $sum += result
     puts "vous devez payer #{$sum} centime"
+    return "vous devez payer #{$sum} centime"
   end
 end

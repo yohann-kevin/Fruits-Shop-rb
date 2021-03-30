@@ -1,6 +1,10 @@
 class Reduction
   $cherryReduction = 0.20
 
+  def self.instance
+    @reduction ||= Reduction.new  
+  end
+
   def countbasket
     [
       $basket.count("cherry"),
