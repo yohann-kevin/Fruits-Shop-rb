@@ -65,7 +65,7 @@ class Price
   end
 
   def manage_error
-    "Invalid input"
+    "Invalid product !"
   end
 
   def find_basket

@@ -5,11 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fruits Shop Ruby</title>
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+      margin-left: 10px;
+      background-color: #2f3136;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .symbol {
+      font-size:2rem;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+    </style>
 </head>
 <body>
     <h1>Fruits Shop Ruby</h1>
     <h2>Cash Register</h2>
-    
 
     <form action="/add" method="post">
       <label for="product">Enter a product : </label></br>
@@ -17,13 +35,23 @@
       <button type="submit">Add</button>
     </form></br>
     
-    <div>
+    <%if result == "Invalid product !"%>
+    <div class="error">
+    <% else %>
+    <div class="success">
+    <% end %>
       <%= result %>
     </div>
 
     <div>
       <p>basket :</p>
-      <%= basket %>
+      <% if basket.length != 0%>
+        <div class="symbol">
+        <% basket.each do |basket|%>
+          <%= basket%>
+        <% end %>
+        </div>
+      <% end %>
     </div>
     
 </body>
