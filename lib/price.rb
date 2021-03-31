@@ -1,17 +1,11 @@
 require "./db/database"
-require "./lib/emoji.rb"
-require "./lib/priceformat.rb"
+require "./lib/emoji"
+require "./lib/priceformat"
 
 class Price
   $sum = 0
   $basket = []
   $db = Database.new
-  $format = "centime"
-  $euro = false
-  $dollar = false
-  $yen = false
-  $livre = false
-  $yuan = false
   $format_money = "cents"
   $format_change = false
 
@@ -68,11 +62,6 @@ class Price
     result = result_format.check_format(result)
     symbol = result_format.check_symbol
     $sum = result_format.check_format($sum) if $format_change
-    # result = result /= 100.0 if $euro
-    # result = result *= 1.174185 if $dollar
-    # result = result *= 130.01 if $yen
-    # result = result *= 0.85 if $livre
-    # result = result *= 7.68 if $yuan
     $sum = $sum + result
     $sum.to_i.round(2)
     fruitmoji = Emoji.new(entry).check_arg
@@ -94,13 +83,4 @@ class Price
     end
     arr
   end
-
-
-
-  #   when "yen"
-  #     $format = "¥"
-  #   when "livre"
-  #     $format = "£"
-  #   when "yuan"
-  #     $format = "¥"
 end

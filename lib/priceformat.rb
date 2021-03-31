@@ -1,16 +1,25 @@
 class Priceformat
+  $money = {
+    "cents" => true,
+    "euro" => false,
+    "dollars" => false,
+    "yen" => false,
+    "livre" => false,
+    "yuan" => false
+  }
+  $symbol = {
+    "cents" => " centimes",
+    "euro" => "€",
+    "dollars" => "$",
+    "yen" => "¥",
+    "livre" => "£",
+    "yuan" => "¥"
+  }
+
   def initialize(arg)
     @value = arg
-    @money = {
-      "cents" => true,
-      "euro" => false,
-      "dollars" => false
-    }
-    @symbol = {
-      "cents" => " centimes",
-      "euro" => "€",
-      "dollars" => "$"
-    }
+    @money = $money
+    @symbol = $symbol
     @price = 0
     @money_value = ""
   end
@@ -24,7 +33,7 @@ class Priceformat
         return convert_euro
       end
     end
-    return @price
+    @price
   end
 
   def convert_euro
@@ -33,17 +42,22 @@ class Priceformat
     puts @money
     @price = (@price /= 100.0).round(2)
     if @money_value == "euro"
-      puts "plop : #{@price}"
-      return @price
+      @price
     else
-      return check_value
+      check_value
     end
   end
 
   def check_value
     case @money_value
     when "dollars"
-      return convert_dollars
+      convert_dollars
+    when "yen"
+      convert_yen
+    when "livre"
+      convert_livre
+    when "yuan"
+      convert_yuan
     end
   end
 
@@ -51,9 +65,29 @@ class Priceformat
     @money["euro"] = false
     @money["dollars"] = true
     @price = (@price *= 1.174185).round(2)
-    return @price
+    @price
   end
 
+  def convert_yen
+    @money["euro"] = false
+    @money["yen"] = true
+    @price = (@price *= 130.01).round(2)
+    @price
+  end
+
+  def convert_livre
+    @money["euro"] = false
+    @money["livre"] = true
+    @price = (@price *= 0.85).round(2)
+    @price
+  end
+
+  def convert_yuan
+    @money["euro"] = false
+    @money["yuan"] = true
+    @price = (@price *= 7.68).round(2)
+    @price
+  end
 
   def check_symbol
     @money.each_key do |key, _value|
