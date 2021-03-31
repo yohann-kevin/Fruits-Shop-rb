@@ -31,8 +31,9 @@ class Priceformat
     @money["cents"] = false
     @money["euro"] = true
     puts @money
-    @price = @price /= 100.0
+    @price = (@price /= 100.0).round(2)
     if @money_value == "euro"
+      puts "plop : #{@price}"
       return @price
     else
       return check_value

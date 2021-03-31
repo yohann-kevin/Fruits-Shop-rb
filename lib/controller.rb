@@ -10,6 +10,7 @@ class Controller
   $result = ""
   $value = ""
   $money_format = "cents"
+  $format_change = false
 
   def index
     template = Tilt.new("./views/index.html.erb")
@@ -23,12 +24,14 @@ class Controller
   def add(params)
     reduction = Reduction.instance
     price = Price.instance(reduction)
-    $result = price.get_price(params.values[0], $money_format)
+    $result = price.get_price(params.values[0], $money_format, $format_change)
+    $format_change = false
     $basket_ui = price.find_basket
     [302, { "Location" => "/" }, []]
   end
 
   def select(params)
+    $format_change = true if params != $money_format && $money_format != ""
     $money_format = params.values[0]
     # form = Priceformat.new(params.values[0])
     # $value = form.check_format

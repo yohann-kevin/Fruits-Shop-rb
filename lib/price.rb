@@ -13,6 +13,7 @@ class Price
   $livre = false
   $yuan = false
   $format_money = "cents"
+  $format_change = false
 
   def self.instance(arg)
     @price ||= Price.new(arg)
@@ -34,9 +35,10 @@ class Price
     result
   end
 
-  def get_price(arg, money_format)
+  def get_price(arg, money_format, format_change)
     puts @fruits
     $format_money = money_format
+    $format_change = format_change
     all_article = arg.split(", ")
     if all_article.length == 1
       entry = arg.to_s.downcase
@@ -65,12 +67,14 @@ class Price
     result_format = Priceformat.new($money_format)
     result = result_format.check_format(result)
     symbol = result_format.check_symbol
+    $sum = result_format.check_format($sum) if $format_change
     # result = result /= 100.0 if $euro
     # result = result *= 1.174185 if $dollar
     # result = result *= 130.01 if $yen
     # result = result *= 0.85 if $livre
     # result = result *= 7.68 if $yuan
-    $sum += result
+    $sum = $sum + result
+    $sum.to_i.round(2)
     fruitmoji = Emoji.new(entry).check_arg
     "vous devez payer #{$sum}#{symbol} #{fruitmoji}"
   end
