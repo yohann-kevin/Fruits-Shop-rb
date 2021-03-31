@@ -8,7 +8,6 @@ require "./lib/priceformat"
 class Controller
   $basket_ui = ""
   $result = ""
-  $value = ""
   $money_format = "cents"
   $format_change = false
 
@@ -33,8 +32,6 @@ class Controller
   def select(params)
     $format_change = true if params != $money_format && $money_format != ""
     $money_format = params.values[0]
-    # form = Priceformat.new(params.values[0])
-    # $value = form.check_format
     [302, { "Location" => "/" }, []]
   end
 

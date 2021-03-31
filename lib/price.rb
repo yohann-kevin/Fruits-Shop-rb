@@ -30,13 +30,19 @@ class Price
   end
 
   def get_price(arg, money_format, format_change)
-    puts @fruits
+    init(money_format, format_change)
+    all_article = arg.split(", ")
+    check_all_article(arg, all_article)
+  end
+
+  def init(money_format, format_change)
     $format_money = money_format
     $format_change = format_change
-    all_article = arg.split(", ")
+  end
+
+  def check_all_article(arg, all_article)
     if all_article.length == 1
       entry = arg.to_s.downcase
-      # compute_cents(@fruits[entry], entry) if test_value(entry)
       test_value(entry) ? compute_cents(@fruits[entry], entry) : manage_error
     else
       all_article.each do |el|
@@ -55,6 +61,7 @@ class Price
     false
   end
 
+  # !Refactoring
   def compute_cents(fruits, entry)
     result = fruits
     result -= @reduction.check_entry(entry, @fruits)
