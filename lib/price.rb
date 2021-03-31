@@ -64,15 +64,15 @@ class Price
     result -= @reduction.check_entry(entry, @fruits)
     result_format = Priceformat.new($money_format)
     result = result_format.check_format(result)
-    # puts "test : #{test}"
+    symbol = result_format.check_symbol
     # result = result /= 100.0 if $euro
     # result = result *= 1.174185 if $dollar
     # result = result *= 130.01 if $yen
     # result = result *= 0.85 if $livre
     # result = result *= 7.68 if $yuan
-    # $sum += result
-    symbol = Emoji.new(entry).check_arg
-    "vous devez payer #{result} #{symbol}"
+    $sum += result
+    fruitmoji = Emoji.new(entry).check_arg
+    "vous devez payer #{$sum}#{symbol} #{fruitmoji}"
   end
 
   def generate_symbol(entry)
@@ -91,31 +91,12 @@ class Price
     arr
   end
 
-  # def convert(value)
-  #   case value
-  #   when "euro"
-  #     $format = "€"
-  #     $euro = true
-  #   when "dollars"
-  #     $format = "$"
-  #     $euro = true
-  #     $dollar = true
+
+
   #   when "yen"
   #     $format = "¥"
-  #     $euro = true
-  #     $yen = true
   #   when "livre"
   #     $format = "£"
-  #     $euro = true
-  #     $livre = true
   #   when "yuan"
   #     $format = "¥"
-  #     $euro = true
-  #     $yuan = true
-  #   else
-  #     $format = "centime"
-  #     $euro = false
-  #     $dollar = false
-  #   end
-  # end
 end
