@@ -7,6 +7,10 @@ class Price
   $db = Database.new
   $format = "centime"
   $euro = false
+  $dollar = false
+  $yen = false
+  $livre = false
+  $yuan = false
 
   def self.instance(arg)
     @price ||= Price.new(arg)
@@ -56,6 +60,10 @@ class Price
     result = fruits
     result -= @reduction.check_entry(entry, @fruits)
     result = result /= 100.0 if $euro
+    result = result *= 1.174185 if $dollar
+    result = result *= 130.01 if $yen
+    result = result *= 0.85 if $livre
+    result = result *= 7.68 if $yuan
     $sum += result
     symbol = Emoji.new(entry).check_arg
     "vous devez payer #{$sum.round(2)} #{$format}  #{symbol}"
@@ -77,13 +85,31 @@ class Price
     arr
   end
 
-  def convert_euro(is_euro)
-    if is_euro
+  def convert(value)
+    case value
+    when "euro"
       $format = "€"
       $euro = true
+    when "dollar"
+      $format = "$"
+      $euro = true
+      $dollar = true
+    when "yen"
+      $format = "¥"
+      $euro = true
+      $yen = true
+    when "livre"
+      $format = "£"
+      $euro = true
+      $livre = true
+    when "yuan"
+      $format = "¥"
+      $euro = true
+      $yuan = true
     else
       $format = "centime"
       $euro = false
+      $dollar = false
     end
   end
 end

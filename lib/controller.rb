@@ -8,7 +8,7 @@ require "./lib/priceformat"
 class Controller
   $basket_ui = ""
   $result = ""
-  $isEuro = false
+  $value = ""
 
   def index
     template = Tilt.new("./views/index.html.erb")
@@ -22,7 +22,7 @@ class Controller
   def add(params)
     reduction = Reduction.instance
     price = Price.instance(reduction)
-    price.convert_euro($isEuro)
+    price.convert($value)
     $result = price.get_price(params.values[0])
     $basket_ui = price.find_basket
     [302, { "Location" => "/" }, []]
@@ -30,7 +30,7 @@ class Controller
 
   def select(params)
     form = Priceformat.new(params.values[0])
-    $isEuro = form.check_format
+    $value = form.check_format
     [302, { "Location" => "/" }, []]
   end
 

@@ -20,3 +20,5 @@ gem "erb"
 gem "rack"
 # Ruby web server
 gem "thin"
+# nokogiri
+gem "nokogiri"
