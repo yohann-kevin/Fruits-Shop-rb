@@ -23,11 +23,25 @@
     .error {
       color: red;
     }
+    button:hover, 
+    select:hover {
+      cursor: pointer;
+    }
     </style>
 </head>
 <body>
     <h1>Fruits Shop Ruby</h1>
     <h2>Cash Register</h2>
+
+    <form action="/select" method="post">
+    <label for="format">Select format (default cents) : </label></br>
+      <select name="format">
+        <option name="default">Select output format</option>
+        <option name="euro" value="euro">Euro</option>
+        <option name="centime" value="cents">Centime</option>
+      </select>
+      <button type="submit">Select</button>
+    </form></br>
 
     <form action="/add" method="post">
       <label for="product">Enter a product : </label></br>

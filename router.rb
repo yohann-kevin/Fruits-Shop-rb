@@ -16,6 +16,8 @@ class Router
       controller.index
     when "/add"
       controller.add(params)
+    when "/select"
+      controller.select(params)
     else
       controller.not_found
     end

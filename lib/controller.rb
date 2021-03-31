@@ -3,10 +3,12 @@ require "erb"
 
 require "./lib/price"
 require "./lib/reduction"
+require "./lib/priceformat"
 
 class Controller
   $basket_ui = ""
   $result = ""
+  $isEuro = false
 
   def index
     template = Tilt.new("./views/index.html.erb")
@@ -20,10 +22,15 @@ class Controller
   def add(params)
     reduction = Reduction.instance
     price = Price.instance(reduction)
-    # $basket_ui += " #{params.values[0]}"
-    # $basket_ui += price.generate_symbol(params.values[0])
+    price.convert_euro($isEuro)
     $result = price.get_price(params.values[0])
     $basket_ui = price.find_basket
+    [302, { "Location" => "/" }, []]
+  end
+
+  def select(params)
+    form = Priceformat.new(params.values[0])
+    $isEuro = form.check_format
     [302, { "Location" => "/" }, []]
   end
 

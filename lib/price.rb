@@ -5,6 +5,8 @@ class Price
   $sum = 0
   $basket = []
   $db = Database.new
+  $format = "centime"
+  $euro = false
 
   def self.instance(arg)
     @price ||= Price.new(arg)
@@ -53,15 +55,14 @@ class Price
   def compute_cents(fruits, entry)
     result = fruits
     result -= @reduction.check_entry(entry, @fruits)
+    result = result /= 100.0 if $euro
     $sum += result
-    # generate_symbol
     symbol = Emoji.new(entry).check_arg
-    "vous devez payer #{$sum} centime  #{symbol}"
+    "vous devez payer #{$sum.round(2)} #{$format}  #{symbol}"
   end
 
   def generate_symbol(entry)
-    symbol = Emoji.new(entry).check_arg
-    return symbol
+    Emoji.new(entry).check_arg
   end
 
   def manage_error
@@ -74,5 +75,15 @@ class Price
       arr << generate_symbol(el)
     end
     arr
+  end
+
+  def convert_euro(is_euro)
+    if is_euro
+      $format = "€"
+      $euro = true
+    else
+      $format = "centime"
+      $euro = false
+    end
   end
 end
