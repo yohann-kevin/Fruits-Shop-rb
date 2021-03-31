@@ -12,7 +12,7 @@ class Controller
     template = Tilt.new("./views/index.html.erb")
     [200, { "Content-Type" => "text/html" }, template.render(
       self,
-      product: $basket_ui,
+      basket: $basket_ui,
       result: $result
     )]
   end
@@ -23,6 +23,7 @@ class Controller
     # $basket_ui += " #{params.values[0]}"
     # $basket_ui += price.generate_symbol(params.values[0])
     $result = price.get_price(params.values[0])
+    $basket_ui = price.find_basket
     [302, { "Location" => "/" }, []]
   end
 

@@ -12,17 +12,18 @@
     
 
     <form action="/add" method="post">
-      <label for="product">Enter a product</label></br>
+      <label for="product">Enter a product : </label></br>
       <input type="text" name="product" id="product">
       <button type="submit">Add</button>
-    </form>
-    
-    <div>
-      <%= product %>
-    </div></br>
+    </form></br>
     
     <div>
       <%= result %>
+    </div>
+
+    <div>
+      <p>basket :</p>
+      <%= basket %>
     </div>
     
 </body>

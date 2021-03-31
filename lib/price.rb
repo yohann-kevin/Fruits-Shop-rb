@@ -31,7 +31,8 @@ class Price
     all_article = arg.split(", ")
     if all_article.length == 1
       entry = arg.to_s.downcase
-      compute_cents(@fruits[entry], entry) if test_value(entry)
+      # compute_cents(@fruits[entry], entry) if test_value(entry)
+      test_value(entry) ? compute_cents(@fruits[entry], entry) : manage_error
     else
       all_article.each do |el|
         get_price(el)
@@ -46,7 +47,6 @@ class Price
         return true
       end
     end
-    manage_error
     false
   end
 
@@ -65,6 +65,14 @@ class Price
   end
 
   def manage_error
-    return "Invalid input"
+    "Invalid input"
+  end
+
+  def find_basket
+    arr = []
+    $basket.each do |el|
+      arr << generate_symbol(el)
+    end
+    arr
   end
 end
