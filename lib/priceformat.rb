@@ -28,9 +28,9 @@ class Priceformat
     @price = price
     @money.each_key do |key, _value|
       next @value == key && key != "cents"
-        @money[key] = true
-        @money_value = key
-        return convert_euro
+      @money[key] = true
+      @money_value = key
+      convert_euro
     end
     @price
   end
