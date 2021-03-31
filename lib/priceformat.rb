@@ -27,10 +27,11 @@ class Priceformat
   def check_format(price)
     @price = price
     @money.each_key do |key, _value|
-      next @value == key && key != "cents"
-      @money[key] = true
-      @money_value = key
-      convert_euro
+      if @value == key && key != "cents"
+        @money_value = key
+        @money[key] = true
+        convert_euro
+      end
     end
     @price
   end
