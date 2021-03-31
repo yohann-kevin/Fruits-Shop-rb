@@ -14,10 +14,9 @@ class Emoji
   def check_arg
     translate_arg
     @symbol.each_key do |key, _value|
-      puts @arg
-      puts key
       return @symbol[key] if @arg == key
     end
+    # @arg
   end
 
   def translate_arg

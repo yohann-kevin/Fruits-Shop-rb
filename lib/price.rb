@@ -54,11 +54,17 @@ class Price
     result = fruits
     result -= @reduction.check_entry(entry, @fruits)
     $sum += result
+    # generate_symbol
     symbol = Emoji.new(entry).check_arg
     "vous devez payer #{$sum} centime  #{symbol}"
   end
 
+  def generate_symbol(entry)
+    symbol = Emoji.new(entry).check_arg
+    return symbol
+  end
+
   def manage_error
-    "Invalid input"
+    return "Invalid input"
   end
 end

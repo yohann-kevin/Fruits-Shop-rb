@@ -20,7 +20,8 @@ class Controller
   def add(params)
     reduction = Reduction.instance
     price = Price.instance(reduction)
-    $basket_ui += " #{params.values[0]}"
+    # $basket_ui += " #{params.values[0]}"
+    # $basket_ui += price.generate_symbol(params.values[0])
     $result = price.get_price(params.values[0])
     [302, { "Location" => "/" }, []]
   end
