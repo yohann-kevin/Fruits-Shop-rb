@@ -16,12 +16,11 @@ class Emoji
     @symbol.each_key do |key, _value|
       return @symbol[key] if @arg == key
     end
-    # @arg
   end
 
   def translate_arg
     %w[mel apples].each do |el|
-      return @arg = el if el == @arg
+      @arg = "pommes" if el == @arg
     end
   end
 end
