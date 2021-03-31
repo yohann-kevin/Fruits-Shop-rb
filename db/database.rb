@@ -1,8 +1,6 @@
 require "sqlite3"
 
 class Database
-  $db
-
   def find_products
     data = connect()
     manage_data(data)
@@ -12,9 +10,7 @@ class Database
   def connect
     $db = SQLite3::Database.open "./db/myshopDB.db"
     puts "db: #{$db}"
-    data = $db.execute "SELECT * FROM products"
-    #puts data
-    return data
+    $db.execute "SELECT * FROM products"
   end
 
   def manage_data(data)
