@@ -1,6 +1,7 @@
 require "./db/database"
 require "./lib/emoji"
 require "./lib/priceformat"
+require "./lib/bitcoin"
 
 class Price
   $sum = 0
@@ -65,12 +66,23 @@ class Price
   def compute_cents(fruits, entry)
     result = fruits
     result -= @reduction.check_entry(entry, @fruits)
-    result_format = Priceformat.new($money_format)
-    result = result_format.check_format(result)
-    symbol = result_format.check_symbol
-    $sum = result_format.check_format($sum) if $format_change
-    $sum = $sum + result
-    $sum.to_i.round(2)
+    puts $money_format
+    if $money_format == "bitcoin"
+      puts fruits
+      test_bitcoin = Priceformat.new("euro").check_format(result)
+      puts test_bitcoin
+      test_bitcoin = Bitcoin.new(test_bitcoin)
+      result = test_bitcoin.get_bitcoin_value
+      $sum = ($sum + result).to_f
+      $sum = "%f" % $sum
+    else
+      result_format = Priceformat.new($money_format)
+      result = result_format.check_format(result)
+      symbol = result_format.check_symbol
+      $sum = result_format.check_format($sum) if $format_change
+      $sum = $sum + result
+      $sum.to_i.round(2)
+    end
     fruitmoji = Emoji.new(entry).check_arg
     "vous devez payer #{$sum}#{symbol} #{fruitmoji}"
   end
