@@ -14,6 +14,16 @@
       color: #fff;
       font-family: Arial, Helvetica, sans-serif;
     }
+    #btnConnect {
+      background-color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      color: #2f3136;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      text-decoration: none;
+    }
     .symbol {
       font-size:2rem;
     }
@@ -32,7 +42,7 @@
 <body>
     <h1>Fruits Shop Ruby</h1>
     <h2>Cash Register</h2>
-
+    <a href="/page_connect" id="btnConnect">Connect</a>
     <form action="/select" method="post">
     <label for="format">Select format (default cents) : </label></br>
       <select name="format">

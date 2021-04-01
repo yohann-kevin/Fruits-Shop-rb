@@ -22,6 +22,8 @@ class Router
       controller.add(params)
     when "/select"
       controller.select(params)
+    when "/page_connect"
+      controller.page_connect
     else
       controller.not_found
     end
