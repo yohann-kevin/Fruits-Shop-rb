@@ -9,6 +9,7 @@ class Price
   $db = Database.new
   $format_money = "cents"
   $format_change = false
+  # $symbol = ""
 
   def self.instance(arg)
     @price ||= Price.new(arg)
@@ -66,11 +67,9 @@ class Price
   def compute_cents(fruits, entry)
     result = fruits
     result -= @reduction.check_entry(entry, @fruits)
-    puts $money_format
     if $money_format == "bitcoin"
       puts fruits
       test_bitcoin = Priceformat.new("euro").check_format(result)
-      puts test_bitcoin
       test_bitcoin = Bitcoin.new(test_bitcoin)
       result = test_bitcoin.get_bitcoin_value
       $sum = ($sum + result).to_f
@@ -82,9 +81,19 @@ class Price
       $sum = result_format.check_format($sum) if $format_change
       $sum = $sum + result
       $sum.to_i.round(2)
+      fruitmoji = Emoji.new(entry).check_arg
+      "vous devez payer #{$sum}#{symbol} #{fruitmoji}"
+      # result = price_formatage(result)
     end
-    fruitmoji = Emoji.new(entry).check_arg
-    "vous devez payer #{$sum}#{symbol} #{fruitmoji}"
+  end
+
+  def price_formatage(result)
+    # result_format = Priceformat.new($money_format)
+    # result = result_format.check_format(result)
+    # $symbol = result_format.check_symbol
+    # $sum = result_format.check_format($sum) if $format_change
+    # $sum = $sum + result
+    # $sum.to_i.round(2)
   end
 
   def generate_symbol(entry)

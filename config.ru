@@ -1,5 +1,6 @@
 require "rack"
 require "thin"
+require "pry"
 # (re)load
 load "router.rb"
 

@@ -10,14 +10,15 @@ class Router
 
   def call(env)
     path = env["REQUEST_PATH"]
-    params = Rack::Request.new(env).params
-    roots(path, params)
+    req = Rack::Request.new(env)
+
+    roots(path, req.params)
   end
 
   def roots(path, params)
     case path
     when "/"
-      controller.index
+      controller.post_data
     when "/add"
       controller.add(params)
     when "/select"
