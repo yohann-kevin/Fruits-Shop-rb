@@ -26,4 +26,16 @@ RSpec.describe Priceformat do
     price_format = Priceformat.new("yuan")
     expect(price_format.check_format(100)).to eql(7.68)
   end
+
+  it "return $" do
+    price_format = Priceformat.new("dollars")
+    price_format.check_format(100)
+    expect(price_format.check_symbol).to eql("$")
+  end
+
+  # it "return £" do
+  #   price_format = Priceformat.new("livre")
+  #   price_format.check_format(100)
+  #   expect(price_format.check_symbol).to eql("£")
+  # end
 end
