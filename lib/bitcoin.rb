@@ -27,4 +27,9 @@ class Bitcoin
     # $result = "%f" % $result
     # puts $result.class
   end
+
+  def format_for_spec
+    get_bitcoin_value
+    $result = "%f" % $result
+  end
 end
