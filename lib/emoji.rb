@@ -18,6 +18,14 @@ class Emoji
     end
   end
 
+  def all_symbol
+    tab_all_symbol = []
+    @symbol.each do |_key, value|
+      tab_all_symbol << value
+    end
+    return tab_all_symbol
+  end
+
   def translate_arg
     %w[mel apples].each do |el|
       @arg = "pommes" if el == @arg

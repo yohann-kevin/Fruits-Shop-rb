@@ -6,6 +6,7 @@ require "./lib/price"
 require "./lib/reduction"
 require "./lib/priceformat"
 require "./db/database"
+require "./lib/emoji"
 
 class Controller
   def initialize
@@ -14,6 +15,7 @@ class Controller
     @money_format = "cents"
     @format_change = false
     @toto = Database.new
+    @all_symbol = Emoji.new("all").all_symbol
   end
 
   def index
@@ -51,14 +53,14 @@ class Controller
   end
 
   def post_data
-    result = {}
+    fruits = {}
     data = @toto.find_products
     i = 0
     while i < data&.length
-      result [data[i][1].to_s.downcase] = data[i][2]
+      fruits [data[i][1].to_s.downcase] = data[i][2]
       i += 1
     end
-    products = { "products" => result }
+    products = { "products" => fruits, "results" => @result, "basket" => @basket_ui, "symbol" => @all_symbol }
     [200, { "Content-Type" => "application/json" }, products.to_json]
   end
 end

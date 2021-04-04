@@ -11,8 +11,11 @@ class Router
   def call(env)
     path = env["REQUEST_PATH"]
     req = Rack::Request.new(env)
+    body = req.body.gets
 
-    roots(path, req.params)
+    params = {}
+    params.merge!(body ? JSON.parse(body) : {})
+    roots(path, params)
   end
 
   def roots(path, params)
