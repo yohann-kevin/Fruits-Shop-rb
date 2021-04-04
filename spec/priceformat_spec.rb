@@ -1,6 +1,5 @@
 require "spec_helper"
 require "priceformat"
-require "reduction"
 
 RSpec.describe Priceformat do
   it "return 1.0" do
