@@ -42,11 +42,6 @@ class Controller
     [302, { "Location" => "/" }, []]
   end
 
-  def page_connect
-    template = Tilt.new("./views/login.html.erb")
-    [404, { "Content-Type" => "text/html" }, template.render]
-  end
-
   def not_found
     template = Tilt.new("./views/not_found.html.erb")
     [404, { "Content-Type" => "text/html" }, template.render]

@@ -75,7 +75,7 @@ class Price
       $sum = ($sum + result).to_f
       $sum = "%f" % $sum
     else
-      result_format = Priceformat.new($money_format)
+      result_format = Priceformat.new($format_money)
       result = result_format.check_format(result)
       symbol = result_format.check_symbol
       $sum = result_format.check_format($sum) if $format_change
